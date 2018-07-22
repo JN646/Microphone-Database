@@ -23,12 +23,8 @@
 
     <?php
     // initialise variables
-    $make = "";
-    $model = "";
-    $type = "";
-    $polarpattern = "";
-    $notes = "";
-    $update = false;
+    $make = $model = $type = $polarpattern = $price = $notes = "";
+    $discontinued = $update = false;
 
     if (isset($_GET['edit'])) {
         $id = $_GET['edit'];
@@ -41,12 +37,16 @@
             $model = $n['model'];
             $type = $n['type'];
             $polarpattern = $n['polarpattern'];
+            $price = $n['price'];
+            $discontinued = $n['discontinued'];
             $notes = $n['notes'];
         }
     }
     ?>
 
-    <!-- Control Form -->
+<div class='border'>
+  <div class='col-md-12'>
+  <!-- Control Form -->
     <?php if ($update == true): ?>
       <h2>Update</h2>
     <?php else: ?>
@@ -75,8 +75,8 @@
 
 <div class='form-row'>
   <!-- Type -->
-<div class='col'>
-  <div class="form-group">
+    <div class='col'>
+      <div class="form-group">
     		<label class="">Type</label><br>
         <select class="form-control" name="type">
           <option value="">Please Select</option>
@@ -87,8 +87,8 @@
     	</div>
     </div>
 
-<div class='col'>
-  <!-- Polar Patterns -->
+    <div class='col'>
+      <!-- Polar Patterns -->
       <div class="form-group">
         <label class="">Polar Pattern</label><br>
         <select class="form-control" name="polarpattern">
@@ -100,6 +100,23 @@
       </div>
     </div>
   </div>
+
+  <div class='form-row'>
+    <!-- Price -->
+      <div class='col'>
+        <div class="form-group">
+      		<label class="">Price</label><br>
+          <input class='form-control' type="text" name="price" value="<?php echo $price; ?>">
+      	</div>
+      </div>
+
+      <div class='col'>
+        <!-- Discontinued -->
+        <div class="form-group">
+          <label class="">Discontinued</label><br>
+        </div>
+      </div>
+    </div>
 
       <!-- Notes -->
     	<div class="form-group">
@@ -116,6 +133,8 @@
     		<?php endif ?>
     	</div>
     </form>
+  </div>
+</div>
 
     <br>
 
