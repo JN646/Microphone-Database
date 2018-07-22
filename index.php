@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>Microphone Database</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <?php include 'DBConfig.php'; ?>
     <?php include 'functions.php'; ?>
   </head>
   <body>
-    <?php if (isset($_SESSION['message'])): ?>
+<div class='container'>
+  <?php if (isset($_SESSION['message'])): ?>
       <div class="msg">
         <?php
           echo $_SESSION['message'];
@@ -50,25 +52,25 @@
     <?php else: ?>
       <h2>Add</h2>
     <?php endif ?>
-    <form method="post" action="server.php" >
+    <form class='' method="post" action="server.php" >
     	<input type="hidden" name="id" value="<?php echo $id; ?>">
 
       <!-- Make -->
-    	<div class="input-group">
-    		<label>Make</label>
-    		<input type="text" name="make" value="<?php echo $make; ?>">
+    	<div class="form-group">
+    		<label class="">Make</label><br>
+    		<input class='form-control' type="text" name="make" value="<?php echo $make; ?>">
     	</div>
 
       <!-- Model -->
-    	<div class="input-group">
-    		<label>Model</label>
-    		<input type="text" name="model" value="<?php echo $model; ?>">
+    	<div class="form-group">
+    		<label class="">Model</label><br>
+    		<input class='form-control' type="text" name="model" value="<?php echo $model; ?>">
     	</div>
 
       <!-- Type -->
-      <div class="input-group">
-    		<label>Type</label>
-        <select class="" name="type">
+      <div class="form-group">
+    		<label class="">Type</label><br>
+        <select class="form-control" name="type">
           <option value="">Please Select</option>
           <option value="Dynamic">Dynamic</option>
           <option value="Condenser">Condenser</option>
@@ -77,9 +79,9 @@
     	</div>
 
       <!-- Polar Patterns -->
-      <div class="input-group">
-        <label>Polar Pattern</label>
-        <select class="" name="polarpattern">
+      <div class="form-group">
+        <label class="">Polar Pattern</label><br>
+        <select class="form-control" name="polarpattern">
           <option value="">Please Select</option>
           <option value="Omnidirectional">Omnidirectional</option>
           <option value="Cardioid">Cardioid</option>
@@ -88,13 +90,13 @@
       </div>
 
       <!-- Notes -->
-    	<div class="input-group">
-    		<label>Notes</label><br>
-    		<textarea name="notes"><?php echo $notes; ?></textarea>
+    	<div class="form-group">
+    		<label class="">Notes</label><br>
+    		<textarea class="form-control" name="notes"><?php echo $notes; ?></textarea>
     	</div>
 
       <!-- Submit Buttons -->
-    	<div class="input-group">
+    	<div class="form-group">
     		<?php if ($update == true): ?>
     			<button class="btn" type="submit" name="update">Update</button>
     		<?php else: ?>
@@ -111,14 +113,14 @@
     if ($result = mysqli_query($mysqli, $activesql)) {
         if (mysqli_num_rows($result) > 0) {
             ?>
-    <table>
+    <table class='table'>
       <tr>
-        <th>ID</th>
-        <th>Make</th>
-        <th>Model</th>
-        <th>Type</th>
-        <th>Polar Pattern</th>
-			  <th colspan="3">Action</th>
+        <th class='text-center'>ID</th>
+        <th class='text-center'>Make</th>
+        <th class='text-center'>Model</th>
+        <th class='text-center'>Type</th>
+        <th class='text-center'>Polar Pattern</th>
+			  <th class='text-center' colspan="3">Action</th>
       </tr>
 
       <?php
@@ -144,6 +146,6 @@
         }
     } else {
         SQLError($mysqli);
-    } ?>
+    } ?></div>
   </body>
 </html>
