@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Microphone Database</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <?php include 'DBConfig.php'; ?>
     <?php include 'functions.php'; ?>
   </head>
@@ -129,9 +130,9 @@
               echo "<td>" . $row['model'] . "</td>";
               echo "<td>" . $row['type'] . "</td>";
               echo "<td>" . $row['polarpattern'] . "</td>";
-              echo "<td><a href='view.php?id=" . $row['id'] . "' class='view_btn'>View</a></td>";
-              echo "<td><a href='index.php?edit=" . $row['id'] . "' class='edit_btn'>Edit</a></td>";
-              echo "<td><a href='server.php?del=" . $row['id'] . "' class='del_btn'>Delete</a></td>";
+              echo "<td><a href='view.php?id=" . $row['id'] . "' class='view_btn'><i class='fas fa-eye'></i></a></td>";
+              echo "<td><a href='index.php?edit=" . $row['id'] . "' class='edit_btn'><i class='fas fa-edit'></i></a></td>";
+              echo "<td><a href='server.php?del=" . $row['id'] . "' class='del_btn'><i class='far fa-trash-alt'></i></a></td>";
               echo "</tr>";
           }
             echo "</table>";
