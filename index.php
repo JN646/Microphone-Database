@@ -22,6 +22,7 @@
     $make = "";
     $model = "";
     $type = "";
+    $notes = "";
     $update = false;
 
     if (isset($_GET['edit'])) {
@@ -68,9 +69,15 @@
           <option value="Ribbon">Ribbon</option>
         </select>
     	</div>
-    	<div class="input-group">
 
-        <!-- Submit Buttons -->
+      <!-- Notes -->
+    	<div class="input-group">
+    		<label>Notes</label><br>
+    		<textarea name="notes"><?php echo $notes; ?></textarea>
+    	</div>
+
+      <!-- Submit Buttons -->
+    	<div class="input-group">
     		<?php if ($update == true): ?>
     			<button class="btn" type="submit" name="update">Update</button>
     		<?php else: ?>

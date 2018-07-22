@@ -17,10 +17,13 @@
     $make = $microphone['make'];
     $model = $microphone['model'];
     $type = $microphone['type'];
+    $notes = $microphone['notes'];
    ?>
 
     <h1><?php echo $make . " " . $model ?></h1>
-    <p>Type: <?php echo $type ?></p>
+    <p><strong>Type:</strong> <?php echo $type ?></p>
+    <h3>Notes:</h3>
+    <p><?php echo $notes ?></p>
     <br>
     <p><a href="index.php">Back</a></p>
   </body>
