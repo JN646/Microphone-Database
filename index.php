@@ -8,7 +8,57 @@
   <body>
     <h1>Microphone Database</h1>
     <p>List of microphones and specs. A simple programming project.</p>
-    <p><a href="#">Add</a></p>
+    <br>
+
+    <?php
+    // initialise variables
+    $make = "";
+    $model = "";
+    $type = "";
+    $update = false;
+
+    if (isset($_GET['edit'])) {
+      $id = $_GET['edit'];
+      $update = true;
+      $record = mysqli_query($mysqli, "SELECT * FROM crud WHERE id=$id");
+
+      if (count($record) == 1 ) {
+        $n = mysqli_fetch_array($record);
+        $make = $n['make'];
+        $model = $n['model'];
+        $type = $n['type'];
+      }
+    }
+    ?>
+
+    <form method="post" action="server.php" >
+
+    	<input type="hidden" name="id" value="<?php echo $id; ?>">
+
+    	<div class="input-group">
+    		<label>Make</label>
+    		<input type="text" name="make" value="<?php echo $make; ?>">
+    	</div>
+    	<div class="input-group">
+    		<label>Model</label>
+    		<input type="text" name="model" value="<?php echo $model; ?>">
+    	</div>
+      <div class="input-group">
+    		<label>Type</label>
+    		<input type="text" name="type" value="<?php echo $type; ?>">
+    	</div>
+    	<div class="input-group">
+
+    		<?php if ($update == true): ?>
+    			<button class="btn" type="submit" name="update" style="background: #556B2F;" >update</button>
+    		<?php else: ?>
+    			<button class="btn" type="submit" name="save" >Save</button>
+    		<?php endif ?>
+    	</div>
+    </form>
+
+    <br>
+
     <?php
     // ACTIVE RESULTS
     $activesql = "SELECT * FROM crud ORDER BY make ASC";
@@ -33,7 +83,7 @@
               echo "<td>" . $row['make'] . "</td>";
               echo "<td>" . $row['model'] . "</td>";
               echo "<td>" . $row['type'] . "</td>";
-              echo "<td><a href='server.php?edit=" . $row['id'] . "' class='edit_btn'>Edit</a></td>";
+              echo "<td><a href='index.php?edit=" . $row['id'] . "' class='edit_btn'>Edit</a></td>";
               echo "<td><a href='server.php?del=" . $row['id'] . "' class='del_btn'>Delete</a></td>";
               echo "</tr>";
           }
