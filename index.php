@@ -93,7 +93,7 @@
         <th>Make</th>
         <th>Model</th>
         <th>Type</th>
-			  <th colspan="2">Action</th>
+			  <th colspan="3">Action</th>
       </tr>
 
       <?php
@@ -104,6 +104,7 @@
               echo "<td>" . $row['make'] . "</td>";
               echo "<td>" . $row['model'] . "</td>";
               echo "<td>" . $row['type'] . "</td>";
+              echo "<td><a href='view.php?id=" . $row['id'] . "' class='view_btn'>View</a></td>";
               echo "<td><a href='index.php?edit=" . $row['id'] . "' class='edit_btn'>Edit</a></td>";
               echo "<td><a href='server.php?del=" . $row['id'] . "' class='del_btn'>Delete</a></td>";
               echo "</tr>";
