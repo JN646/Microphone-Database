@@ -6,6 +6,14 @@
     <?php include 'DBConfig.php'; ?>
   </head>
   <body>
+    <?php if (isset($_SESSION['message'])): ?>
+      <div class="msg">
+        <?php
+          echo $_SESSION['message'];
+          unset($_SESSION['message']);
+        ?>
+      </div>
+    <?php endif ?>
     <h1>Microphone Database</h1>
     <p>List of microphones and specs. A simple programming project.</p>
     <br>
@@ -50,9 +58,9 @@
     	<div class="input-group">
 
     		<?php if ($update == true): ?>
-    			<button class="btn" type="submit" name="update" style="background: #556B2F;" >update</button>
+    			<button class="btn" type="submit" name="update">Update</button>
     		<?php else: ?>
-    			<button class="btn" type="submit" name="save" >Save</button>
+    			<button class="btn" type="submit" name="save">Add</button>
     		<?php endif ?>
     	</div>
     </form>
@@ -71,8 +79,7 @@
         <th>Make</th>
         <th>Model</th>
         <th>Type</th>
-        <th>Edit</th>
-        <th>Delete</th>
+			  <th colspan="2">Action</th>
       </tr>
 
       <?php

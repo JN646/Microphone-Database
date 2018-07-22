@@ -2,6 +2,9 @@
 // Link to DB
 include 'DBConfig.php';
 
+// Start Session
+session_start();
+
 // initialise variables
 $make = "";
 $model = "";
@@ -16,8 +19,13 @@ if (isset($_POST['save'])) {
   $model = $_POST['model'];
   $type = $_POST['type'];
 
-  mysqli_query($db, "INSERT INTO crud (make, model, type) VALUES ('$make', '$model', '$type')");
-  header('location: index.php');
+  if(mysqli_query($db, "INSERT INTO crud (make, model, type) VALUES ('$make', '$model', '$type')")) {
+    $_SESSION['message'] = "Microphone Saved";
+    header('location: index.php');
+  } else {
+    $_SESSION['message'] = mysqli_error($db);
+    header('location: index.php');
+  }
 }
 
 // Edit
@@ -27,14 +35,25 @@ if (isset($_POST['update'])) {
   $model = $_POST['model'];
   $type = $_POST['type'];
 
-  mysqli_query($mysqli, "UPDATE crud SET make='$make', model='$model', type='$type' WHERE id=$id");
-  header('location: index.php');
+  if(mysqli_query($mysqli, "UPDATE crud SET make='$make', model='$model', type='$type' WHERE id=$id")) {
+    $_SESSION['message'] = "Microphone Updated";
+    header('location: index.php');
+  } else {
+    $_SESSION['message'] = mysqli_error($db);
+    header('location: index.php');
+  }
 }
 
 // Delete
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];
-	mysqli_query($mysqli, "DELETE FROM crud WHERE id=$id");
-	header('location: index.php');
+
+  if(mysqli_query($mysqli, "DELETE FROM crud WHERE id=$id")) {
+    $_SESSION['message'] = "Microphone Deleted";
+    header('location: index.php');
+  } else {
+    $_SESSION['message'] = mysqli_error($db);
+    header('location: index.php');
+  }
 }
 ?>
