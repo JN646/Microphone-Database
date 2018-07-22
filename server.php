@@ -17,7 +17,7 @@ if (isset($_POST['save'])) {
   $model = $_POST['model'];
   $type = $_POST['type'];
   $price = $_POST['price'];
-  $discontinued = $_POST['dicontinued'];
+  $discontinued = $_POST['discontinued'];
   $polarpattern = $_POST['polarpattern'];
   $notes = $_POST['notes'];
 

@@ -5,6 +5,7 @@
     <title>Microphone Database</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <?php include 'DBConfig.php'; ?>
     <?php include 'functions.php'; ?>
   </head>
@@ -18,7 +19,7 @@
         ?>
       </div>
     <?php endif ?>
-    <h1>Microphone Database <span>(<?php echo countMicrophones($mysqli); ?>)</span></h1>
+    <h1>Microphone Database <span class='badge'>(<?php echo countMicrophones($mysqli); ?>)</span></h1>
     <p>A database of common microphones, specs and information. A simple programming project.</p>
 
     <?php
