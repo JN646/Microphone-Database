@@ -95,7 +95,7 @@
           <option value="">Please Select</option>
           <option value="Omnidirectional">Omnidirectional</option>
           <option value="Cardioid">Cardioid</option>
-          <option value="Super-Cardioid">Super-cardioid</option>
+          <option value="Super-Cardioid">Super-Cardioid</option>
         </select>
       </div>
     </div>

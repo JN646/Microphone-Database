@@ -11,4 +11,21 @@ function countMicrophones($mysqli)
     return $rows[0];
 }
 
+function polarPatternImage($polarpattern) {
+  if ($polarpattern == "Omnidirectional") {
+    // Omni...
+    return "omni.png";
+  }
+
+  if ($polarpattern == "Cardioid") {
+    // Cardioid...
+    return "cardioid.png";
+  }
+
+  if ($polarpattern == "Super-Cardioid") {
+    // SuperCardioid...
+    return "super.png";
+  }
+}
+
  ?>
