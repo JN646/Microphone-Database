@@ -33,8 +33,8 @@
               echo "<td>" . $row['make'] . "</td>";
               echo "<td>" . $row['model'] . "</td>";
               echo "<td>" . $row['type'] . "</td>";
-              echo "<td><a href='#'>Edit</a></td>";
-              echo "<td><a href='#'>Delete</a></td>";
+              echo "<td><a href='server.php?edit=" . $row['id'] . "' class='edit_btn'>Edit</a></td>";
+              echo "<td><a href='server.php?del=" . $row['id'] . "' class='del_btn'>Delete</a></td>";
               echo "</tr>";
           }
             echo "</table>";
