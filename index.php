@@ -31,18 +31,18 @@
     $update = false;
 
     if (isset($_GET['edit'])) {
-      $id = $_GET['edit'];
-      $update = true;
-      $record = mysqli_query($mysqli, "SELECT * FROM crud WHERE id=$id");
+        $id = $_GET['edit'];
+        $update = true;
+        $record = mysqli_query($mysqli, "SELECT * FROM crud WHERE id=$id");
 
-      if (count($record) == 1 ) {
-        $n = mysqli_fetch_array($record);
-        $make = $n['make'];
-        $model = $n['model'];
-        $type = $n['type'];
-        $polarpattern = $n['polarpattern'];
-        $notes = $n['notes'];
-      }
+        if (count($record) == 1) {
+            $n = mysqli_fetch_array($record);
+            $make = $n['make'];
+            $model = $n['model'];
+            $type = $n['type'];
+            $polarpattern = $n['polarpattern'];
+            $notes = $n['notes'];
+        }
     }
     ?>
 
@@ -55,20 +55,28 @@
     <form class='' method="post" action="server.php" >
     	<input type="hidden" name="id" value="<?php echo $id; ?>">
 
+    <div class='form-row'>
       <!-- Make -->
-    	<div class="form-group">
-    		<label class="">Make</label><br>
-    		<input class='form-control' type="text" name="make" value="<?php echo $make; ?>">
-    	</div>
+    <div class='col'>
+        <div class="form-group">
+        		<label class="">Make</label><br>
+        		<input class='form-control' type="text" name="make" value="<?php echo $make; ?>">
+        	</div>
+        </div>
 
-      <!-- Model -->
-    	<div class="form-group">
-    		<label class="">Model</label><br>
-    		<input class='form-control' type="text" name="model" value="<?php echo $model; ?>">
-    	</div>
+        <div class='col'>
+          <!-- Model -->
+        	<div class="form-group">
+        		<label class="">Model</label><br>
+        		<input class='form-control' type="text" name="model" value="<?php echo $model; ?>">
+        	</div>
+        </div>
+    </div>
 
-      <!-- Type -->
-      <div class="form-group">
+<div class='form-row'>
+  <!-- Type -->
+<div class='col'>
+  <div class="form-group">
     		<label class="">Type</label><br>
         <select class="form-control" name="type">
           <option value="">Please Select</option>
@@ -77,8 +85,10 @@
           <option value="Ribbon">Ribbon</option>
         </select>
     	</div>
+    </div>
 
-      <!-- Polar Patterns -->
+<div class='col'>
+  <!-- Polar Patterns -->
       <div class="form-group">
         <label class="">Polar Pattern</label><br>
         <select class="form-control" name="polarpattern">
@@ -88,6 +98,8 @@
           <option value="Super-Cardioid">Super-cardioid</option>
         </select>
       </div>
+    </div>
+  </div>
 
       <!-- Notes -->
     	<div class="form-group">
@@ -146,6 +158,7 @@
         }
     } else {
         SQLError($mysqli);
-    } ?></div>
+    } ?>
+  </div>
   </body>
 </html>
