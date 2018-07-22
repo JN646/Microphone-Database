@@ -19,11 +19,11 @@ if (isset($_POST['save'])) {
   $model = $_POST['model'];
   $type = $_POST['type'];
 
-  if(mysqli_query($db, "INSERT INTO crud (make, model, type) VALUES ('$make', '$model', '$type')")) {
+  if(mysqli_query($mysqli, "INSERT INTO crud (make, model, type) VALUES ('$make', '$model', '$type')")) {
     $_SESSION['message'] = "Microphone Saved";
     header('location: index.php');
   } else {
-    $_SESSION['message'] = mysqli_error($db);
+    $_SESSION['message'] = mysqli_error($mysqli);
     header('location: index.php');
   }
 }

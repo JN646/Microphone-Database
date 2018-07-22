@@ -16,7 +16,6 @@
     <?php endif ?>
     <h1>Microphone Database</h1>
     <p>List of microphones and specs. A simple programming project.</p>
-    <br>
 
     <?php
     // initialise variables
@@ -39,24 +38,39 @@
     }
     ?>
 
+    <!-- Control Form -->
+    <?php if ($update == true): ?>
+      <h2>Update</h2>
+    <?php else: ?>
+      <h2>Add</h2>
+    <?php endif ?>
     <form method="post" action="server.php" >
-
     	<input type="hidden" name="id" value="<?php echo $id; ?>">
 
+      <!-- Make -->
     	<div class="input-group">
     		<label>Make</label>
     		<input type="text" name="make" value="<?php echo $make; ?>">
     	</div>
+
+      <!-- Model -->
     	<div class="input-group">
     		<label>Model</label>
     		<input type="text" name="model" value="<?php echo $model; ?>">
     	</div>
+
+      <!-- Type -->
       <div class="input-group">
     		<label>Type</label>
-    		<input type="text" name="type" value="<?php echo $type; ?>">
+        <select class="" name="type">
+          <option value="Dynamic">Dynamic</option>
+          <option value="Condenser">Condenser</option>
+          <option value="Ribbon">Ribbon</option>
+        </select>
     	</div>
     	<div class="input-group">
 
+        <!-- Submit Buttons -->
     		<?php if ($update == true): ?>
     			<button class="btn" type="submit" name="update">Update</button>
     		<?php else: ?>
