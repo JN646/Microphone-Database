@@ -6,15 +6,9 @@ include 'DBConfig.php';
 session_start();
 
 // initialise variables
-$make = "";
-$model = "";
-$type = "";
-$polarpattern = "";
-$notes = "";
-$price = "";
-$discontinued = "";
-$id = 0;
+$make = $model = $type = $polarpattern = $notes = $price = $discontinued = "";
 $update = false;
+$id = 0;
 
 // Add
 if (isset($_POST['save'])) {
@@ -27,7 +21,7 @@ if (isset($_POST['save'])) {
   $polarpattern = $_POST['polarpattern'];
   $notes = $_POST['notes'];
 
-  if(mysqli_query($mysqli, "INSERT INTO crud (make, model, type, polarpattern, price, discontinued, notes) VALUES ('$make', '$model', '$type', '$price', 'discontinued', '$polarpattern', '$notes')")) {
+  if(mysqli_query($mysqli, "INSERT INTO crud (make, model, type, polarpattern, price, discontinued, notes) VALUES ('$make', '$model', '$type', '$polarpattern', '$price', 'discontinued', '$notes')")) {
     $_SESSION['message'] = "Microphone Saved";
     header('location: index.php');
   } else {
@@ -43,7 +37,7 @@ if (isset($_POST['update'])) {
   $model = $_POST['model'];
   $type = $_POST['type'];
   $price = $_POST['price'];
-  $discontinued = $_POST['dicontinued'];
+  $discontinued = $_POST['discontinued'];
   $polarpattern = $_POST['polarpattern'];
   $notes = $_POST['notes'];
 
@@ -51,8 +45,8 @@ if (isset($_POST['update'])) {
     $_SESSION['message'] = "Microphone Updated";
     header('location: index.php');
   } else {
-    $_SESSION['message'] = mysqli_error($db);
-    header('location: index.php');
+    $_SESSION['message'] = mysqli_error($mysqli);
+    // header('location: index.php');
   }
 }
 
@@ -64,7 +58,7 @@ if (isset($_GET['del'])) {
     $_SESSION['message'] = "Microphone Deleted";
     header('location: index.php');
   } else {
-    $_SESSION['message'] = mysqli_error($db);
+    $_SESSION['message'] = mysqli_error($mysqli);
     header('location: index.php');
   }
 }

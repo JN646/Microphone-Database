@@ -23,8 +23,8 @@
 
     <?php
     // initialise variables
-    $make = $model = $type = $polarpattern = $price = $notes = "";
-    $discontinued = $update = false;
+    $make = $model = $type = $polarpattern = $price = $notes = $discontinued = "";
+    $update = false;
 
     if (isset($_GET['edit'])) {
         $id = $_GET['edit'];
@@ -99,9 +99,7 @@
         </select>
       </div>
     </div>
-  </div>
 
-  <div class='form-row'>
     <!-- Price -->
       <div class='col'>
         <div class="form-group">
@@ -114,6 +112,7 @@
         <!-- Discontinued -->
         <div class="form-group">
           <label class="">Discontinued</label><br>
+          <input class='form-control' type="text" name="discontinued" value="<?php echo $discontinued; ?>">
         </div>
       </div>
     </div>
@@ -140,13 +139,12 @@
 
     <?php
     // ACTIVE RESULTS
-    $activesql = "SELECT * FROM crud ORDER BY make ASC";
+    $activesql = "SELECT * FROM crud ORDER BY make, model ASC";
     if ($result = mysqli_query($mysqli, $activesql)) {
         if (mysqli_num_rows($result) > 0) {
             ?>
     <table class='table'>
       <tr>
-        <th class='text-center'>ID</th>
         <th class='text-center'>Make</th>
         <th class='text-center'>Model</th>
         <th class='text-center'>Type</th>
@@ -158,7 +156,6 @@
           while ($row = mysqli_fetch_array($result)) {
               // Draw Table.
               echo "<tr>";
-              echo "<td>" . $row['id'] . "</td>";
               echo "<td>" . $row['make'] . "</td>";
               echo "<td>" . $row['model'] . "</td>";
               echo "<td>" . $row['type'] . "</td>";
