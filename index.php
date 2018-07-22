@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Microphone Database</title>
     <?php include 'DBConfig.php'; ?>
+    <?php include 'functions.php'; ?>
   </head>
   <body>
     <?php if (isset($_SESSION['message'])): ?>
@@ -14,14 +15,15 @@
         ?>
       </div>
     <?php endif ?>
-    <h1>Microphone Database</h1>
-    <p>List of microphones and specs. A simple programming project.</p>
+    <h1>Microphone Database <span>(<?php echo countMicrophones($mysqli); ?>)</span></h1>
+    <p>A database of common microphones, specs and information. A simple programming project.</p>
 
     <?php
     // initialise variables
     $make = "";
     $model = "";
     $type = "";
+    $polarpattern = "";
     $notes = "";
     $update = false;
 
@@ -35,6 +37,8 @@
         $make = $n['make'];
         $model = $n['model'];
         $type = $n['type'];
+        $polarpattern = $n['polarpattern'];
+        $notes = $n['notes'];
       }
     }
     ?>
@@ -64,11 +68,23 @@
       <div class="input-group">
     		<label>Type</label>
         <select class="" name="type">
+          <option value="">Please Select</option>
           <option value="Dynamic">Dynamic</option>
           <option value="Condenser">Condenser</option>
           <option value="Ribbon">Ribbon</option>
         </select>
     	</div>
+
+      <!-- Polar Patterns -->
+      <div class="input-group">
+        <label>Polar Pattern</label>
+        <select class="" name="polarpattern">
+          <option value="">Please Select</option>
+          <option value="Omnidirectional">Omnidirectional</option>
+          <option value="Cardioid">Cardioid</option>
+          <option value="Super-Cardioid">Super-cardioid</option>
+        </select>
+      </div>
 
       <!-- Notes -->
     	<div class="input-group">
@@ -100,6 +116,7 @@
         <th>Make</th>
         <th>Model</th>
         <th>Type</th>
+        <th>Polar Pattern</th>
 			  <th colspan="3">Action</th>
       </tr>
 
@@ -111,6 +128,7 @@
               echo "<td>" . $row['make'] . "</td>";
               echo "<td>" . $row['model'] . "</td>";
               echo "<td>" . $row['type'] . "</td>";
+              echo "<td>" . $row['polarpattern'] . "</td>";
               echo "<td><a href='view.php?id=" . $row['id'] . "' class='view_btn'>View</a></td>";
               echo "<td><a href='index.php?edit=" . $row['id'] . "' class='edit_btn'>Edit</a></td>";
               echo "<td><a href='server.php?del=" . $row['id'] . "' class='del_btn'>Delete</a></td>";
