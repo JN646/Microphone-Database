@@ -6,7 +6,7 @@ include 'DBConfig.php';
 session_start();
 
 // initialise variables
-$make = $model = $type = $polarpattern = $notes = $price = $discontinued = "";
+$make = $model = $type = $polarpattern = $notes = $price = $discontinued = $update_revisions = "";
 $update = false;
 $id = 0;
 

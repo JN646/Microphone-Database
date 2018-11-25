@@ -17,7 +17,9 @@
     $discontinued = $microphone['discontinued'];
     $polarpattern = $microphone['polarpattern'];
     $notes = $microphone['notes'];
+    $update_revisions = $microphone['update_revisions'];
 
+    // Logical Tests
     if ($price == 0) {
       $price = 'N/A';
     }
@@ -35,13 +37,31 @@
     <div class='col-md-12'>
       <h1><?php echo $make . " " . $model ?></h1>
 
-      <!-- Paras -->
-      <p><strong>Type:</strong> <?php echo $type ?></p>
-      <p><strong>Price:</strong> <?php echo $price ?></p>
-      <p><strong>Discontinued:</strong> <?php echo $discontinued ?></p>
-      <p><strong>Polar Pattern:</strong> <?php echo $polarpattern ?></p>
-      <!-- Polar Pattern Image -->
-      <img src="img/<?php echo polarPatternImage($polarpattern); ?>" width=100px alt="">
+      <!-- Details -->
+      <table class='table table-bordered'>
+        <tbody>
+          <tr>
+            <td><strong>Type:</strong></td>
+            <td><?php echo $type ?></td>
+          </tr>
+          <tr>
+            <td><strong>Price:</strong></td>
+            <td><?php echo $price ?></td>
+          </tr>
+          <tr>
+            <td><strong>Discontinued:</strong></td>
+            <td><?php echo $discontinued ?></td>
+          </tr>
+          <tr>
+            <td><strong>Polar Pattern:</strong></td>
+            <td>
+              <?php echo $polarpattern ?> <br>
+              <img src="img/<?php echo polarPatternImage($polarpattern); ?>" width=100px alt="">
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
 
       <br>
 

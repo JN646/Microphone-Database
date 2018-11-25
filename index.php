@@ -20,7 +20,7 @@
 
       <?php
       // initialise variables
-      $make = $model = $type = $polarpattern = $price = $notes = $discontinued = "";
+      $make = $model = $type = $polarpattern = $price = $notes = $discontinued = $update_revisions = "";
       $update = false;
 
       if (isset($_GET['edit'])) {
