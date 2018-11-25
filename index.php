@@ -177,5 +177,4 @@
           SQLError($mysqli);
       } ?>
     </div>
-  </body>
-</html>
+    <?php include 'partials/_footer.php'; ?>

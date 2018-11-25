@@ -35,5 +35,4 @@
 
     <!-- Back Button -->
     <p><a href="index.php">Back</a></p></div>
-  </body>
-</html>
+    <?php include 'partials/_footer.php'; ?>
