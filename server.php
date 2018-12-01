@@ -21,7 +21,7 @@ if (isset($_POST['save'])) {
   $polarpattern = $_POST['polarpattern'];
   $notes = $_POST['notes'];
 
-  if(mysqli_query($mysqli, "INSERT INTO crud (make, model, type, polarpattern, price, discontinued, notes) VALUES ('$make', '$model', '$type', '$polarpattern', '$price', 'discontinued', '$notes')")) {
+  if(mysqli_query($mysqli, "INSERT INTO crud (make, model, type, polarpattern, price, discontinued, notes) VALUES ('$make', '$model', '$type', '$polarpattern', '$price', '$discontinued', '$notes')")) {
     $_SESSION['message'] = "Microphone Saved";
     header('location: index.php');
   } else {

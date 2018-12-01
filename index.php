@@ -1,6 +1,29 @@
 <!-- Header Partial -->
 <?php include_once 'partials/_header.php' ?>
 
+<?php
+// initialise variables
+$make = $model = $type = $polarpattern = $price = $notes = $discontinued = $update_revisions = "";
+$update = false;
+
+if (isset($_GET['edit'])) {
+    $id = $_GET['edit'];
+    $update = true;
+    $record = mysqli_query($mysqli, "SELECT * FROM crud WHERE id=$id");
+
+    if (count($record) == 1) {
+        $n = mysqli_fetch_array($record);
+        $make = $n['make'];
+        $model = $n['model'];
+        $type = $n['type'];
+        $polarpattern = $n['polarpattern'];
+        $price = $n['price'];
+        $discontinued = $n['discontinued'];
+        $notes = $n['notes'];
+    }
+}
+?>
+
 <!-- Container -->
   <div id='bodyContainer' class='container'>
 
@@ -17,29 +40,6 @@
       <!-- Header -->
       <h1>Microphone Database <span class='badge'>(<?php echo countMicrophones($mysqli); ?>)</span></h1>
       <p>A database of common microphones, specs and information. A simple programming project.</p>
-
-      <?php
-      // initialise variables
-      $make = $model = $type = $polarpattern = $price = $notes = $discontinued = $update_revisions = "";
-      $update = false;
-
-      if (isset($_GET['edit'])) {
-          $id = $_GET['edit'];
-          $update = true;
-          $record = mysqli_query($mysqli, "SELECT * FROM crud WHERE id=$id");
-
-          if (count($record) == 1) {
-              $n = mysqli_fetch_array($record);
-              $make = $n['make'];
-              $model = $n['model'];
-              $type = $n['type'];
-              $polarpattern = $n['polarpattern'];
-              $price = $n['price'];
-              $discontinued = $n['discontinued'];
-              $notes = $n['notes'];
-          }
-      }
-      ?>
 
       <!-- Form -->
       <div class='border border-primary'>
@@ -72,21 +72,8 @@
           </div>
 
       <div class='form-row'>
-        <!-- Type -->
+        <!-- Polar Pattern -->
           <div class='col'>
-            <div class="form-group">
-          		<label class="">Type</label><br>
-              <select class="form-control" name="type">
-                <option value="">Please Select</option>
-                <option value="Dynamic">Dynamic</option>
-                <option value="Condenser">Condenser</option>
-                <option value="Ribbon">Ribbon</option>
-              </select>
-          	</div>
-          </div>
-
-          <div class='col'>
-            <!-- Polar Patterns -->
             <div class="form-group">
               <label class="">Polar Pattern</label><br>
               <select class="form-control" name="polarpattern">
@@ -96,6 +83,19 @@
                 <option value="Super-Cardioid">Super-Cardioid</option>
               </select>
             </div>
+          </div>
+
+          <div class='col'>
+            <!-- Type -->
+            <div class="form-group">
+          		<label class="">Type</label><br>
+              <select class="form-control" name="type">
+                <option value="">Please Select</option>
+                <option value="Dynamic">Dynamic</option>
+                <option value="Condenser">Condenser</option>
+                <option value="Ribbon">Ribbon</option>
+              </select>
+          	</div>
           </div>
 
           <!-- Price -->
@@ -146,8 +146,8 @@
           <tr>
             <th class='text-center'>Make</th>
             <th class='text-center'>Model</th>
-            <th class='text-center'>Type</th>
             <th class='text-center'>Polar Pattern</th>
+            <th class='text-center'>Type</th>
             <th class='text-center' colspan="3">Action</th>
           </tr>
         </thead>
@@ -158,8 +158,8 @@
                   echo "<tr>";
                     echo "<td>" . $row['make'] . "</td>";
                     echo "<td>" . $row['model'] . "</td>";
-                    echo "<td>" . $row['type'] . "</td>";
                     echo "<td>" . $row['polarpattern'] . "</td>";
+                    echo "<td>" . $row['type'] . "</td>";
                     echo "<td class='text-center'><a href='view.php?id=" . $row['id'] . "' class='view_btn'><i class='fas fa-eye'></i></a></td>";
                     echo "<td class='text-center'><a href='index.php?edit=" . $row['id'] . "' class='edit_btn'><i class='fas fa-edit'></i></a></td>";
                     echo "<td class='text-center'><a href='server.php?del=" . $row['id'] . "' class='del_btn'><i class='far fa-trash-alt'></i></a></td>";
