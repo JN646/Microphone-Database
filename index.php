@@ -5,6 +5,7 @@
 // initialise variables
 $make = $model = $type = $polarpattern = $price = $notes = $discontinued = $update_revisions = "";
 $update = false;
+$discontinued = 0;
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
@@ -71,49 +72,66 @@ if (isset($_GET['edit'])) {
               </div>
           </div>
 
-      <div class='form-row'>
-        <!-- Polar Pattern -->
-          <div class='col'>
-            <div class="form-group">
-              <label class="">Polar Pattern</label><br>
-              <select class="form-control" name="polarpattern">
-                <option value="">Please Select</option>
-                <option value="Omnidirectional">Omnidirectional</option>
-                <option value="Cardioid">Cardioid</option>
-                <option value="Super-Cardioid">Super-Cardioid</option>
-              </select>
-            </div>
-          </div>
-
-          <div class='col'>
-            <!-- Type -->
-            <div class="form-group">
-          		<label class="">Type</label><br>
-              <select class="form-control" name="type">
-                <option value="">Please Select</option>
-                <option value="Dynamic">Dynamic</option>
-                <option value="Condenser">Condenser</option>
-                <option value="Ribbon">Ribbon</option>
-              </select>
-          	</div>
-          </div>
-
-          <!-- Price -->
+        <div class='form-row'>
+          <!-- Polar Pattern -->
             <div class='col'>
               <div class="form-group">
-            		<label class="">Price</label><br>
-                <input class='form-control' type="text" name="price" value="<?php echo $price; ?>">
+                <label class="">Polar Pattern</label><br>
+                <select id='polarpatternSelect' class="form-control" name="polarpattern">
+                  <option value="">Please Select</option>
+                  <option value="Omnidirectional">Omnidirectional</option>
+                  <option value="Cardioid">Cardioid</option>
+                  <option value="Super-Cardioid">Super-Cardioid</option>
+                </select>
+              </div>
+            </div>
+
+            <div class='col'>
+              <!-- Type -->
+              <div class="form-group">
+            		<label class="">Type</label><br>
+                <select id='typeSelect' class="form-control" name="type">
+                  <option value="">Please Select</option>
+                  <option value="Dynamic">Dynamic</option>
+                  <option value="Condenser">Condenser</option>
+                  <option value="Ribbon">Ribbon</option>
+                </select>
             	</div>
             </div>
 
-            <div class='col'>
-              <!-- Discontinued -->
-              <div class="form-group">
-                <label class="">Discontinued</label><br>
-                <input class='form-control' type="text" name="discontinued" value="<?php echo $discontinued; ?>">
+            <!-- Price -->
+              <div class='col'>
+                <div class="form-group">
+              		<label class="">Price</label><br>
+                  <input class='form-control' type="text" name="price" value="<?php echo $price; ?>">
+              	</div>
+              </div>
+
+              <div class='col'>
+                <!-- Discontinued -->
+                <div class="form-group">
+                  <label class="">Discontinued</label><br>
+                  <input type="hidden" name="discontinued" value="0">
+                  <input id='disconCheckbox' type="checkbox" name="discontinued" value="1">
+                </div>
               </div>
             </div>
-          </div>
+
+            <script type="text/javascript">
+              var disconCheckbox = document.getElementById('disconCheckbox');
+
+              // Set Discontinued Checkbox Value
+              if (<?php echo $discontinued; ?> == 1) {
+                disconCheckbox.checked = true;
+              } else {
+                disconCheckbox.checked = false;
+              }
+
+              $(document).ready(function () {
+                $('#typeSelect').val('<?php echo $type; ?>');
+                $('#polarpatternSelect').val('<?php echo $polarpattern; ?>');
+              });
+            </script>
 
             <!-- Notes -->
           	<div class="form-group">
