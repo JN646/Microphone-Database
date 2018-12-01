@@ -14,6 +14,7 @@
     $model = $microphone['model'];
     $type = $microphone['type'];
     $price = $microphone['price'];
+    $currency = $microphone['price_currency'];
     $discontinued = $microphone['discontinued'];
     $polarpattern = $microphone['polarpattern'];
     $notes = $microphone['notes'];
@@ -46,7 +47,7 @@
           </tr>
           <tr>
             <td><strong>Price:</strong></td>
-            <td><?php echo $price ?></td>
+            <td><?php echo $price ?> <?php echo $currency ?></td>
           </tr>
           <tr>
             <td><strong>Discontinued:</strong></td>

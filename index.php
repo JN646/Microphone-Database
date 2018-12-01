@@ -3,7 +3,7 @@
 
 <?php
 // initialise variables
-$make = $model = $type = $polarpattern = $price = $notes = $discontinued = $update_revisions = "";
+$make = $model = $type = $polarpattern = $price = $price_currency = $notes = $update_revisions = "";
 $update = false;
 $discontinued = 0;
 
@@ -19,6 +19,7 @@ if (isset($_GET['edit'])) {
         $type = $n['type'];
         $polarpattern = $n['polarpattern'];
         $price = $n['price'];
+        $currency = $n['price_currency'];
         $discontinued = $n['discontinued'];
         $notes = $n['notes'];
     }
@@ -54,8 +55,11 @@ if (isset($_GET['edit'])) {
           <form class='' method="post" action="server.php" >
           	<input type="hidden" name="id" value="<?php echo $id; ?>">
 
+          <fieldset>
+
+          </fieldset>
           <div class='form-row'>
-            <!-- Make -->
+          <!-- Make -->
           <div class='col'>
               <div class="form-group">
               		<label class="">Make</label><br>
@@ -86,8 +90,8 @@ if (isset($_GET['edit'])) {
               </div>
             </div>
 
+            <!-- Type -->
             <div class='col'>
-              <!-- Type -->
               <div class="form-group">
             		<label class="">Type</label><br>
                 <select id='typeSelect' class="form-control" name="type">
@@ -107,6 +111,19 @@ if (isset($_GET['edit'])) {
               	</div>
               </div>
 
+              <!-- Currency -->
+              <div class='col'>
+                <div class="form-group">
+                  <label class="">Currency</label><br>
+                  <select id='currencySelect' class="form-control" name="price_currency">
+                    <option value="">Please Select</option>
+                    <option value="GBP">GBP</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                  </select>
+                </div>
+              </div>
+
               <div class='col'>
                 <!-- Discontinued -->
                 <div class="form-group">
@@ -116,22 +133,6 @@ if (isset($_GET['edit'])) {
                 </div>
               </div>
             </div>
-
-            <script type="text/javascript">
-              var disconCheckbox = document.getElementById('disconCheckbox');
-
-              // Set Discontinued Checkbox Value
-              if (<?php echo $discontinued; ?> == 1) {
-                disconCheckbox.checked = true;
-              } else {
-                disconCheckbox.checked = false;
-              }
-
-              $(document).ready(function () {
-                $('#typeSelect').val('<?php echo $type; ?>');
-                $('#polarpatternSelect').val('<?php echo $polarpattern; ?>');
-              });
-            </script>
 
             <!-- Notes -->
           	<div class="form-group">
@@ -189,10 +190,30 @@ if (isset($_GET['edit'])) {
               // Free result set
               mysqli_free_result($result);
           } else {
-              echo "No microphones were found.";
+              echo "<p class='alert alert-info'>No microphones were found.</p>";
           }
       } else {
           SQLError($mysqli);
       } ?>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // Get discontinued checkbox.
+        var disconCheckbox = document.getElementById('disconCheckbox');
+
+        // Set Discontinued Checkbox Value
+        if (<?php echo $discontinued; ?> == 1) {
+          // Check the box.
+          disconCheckbox.checked = true;
+        } else {
+          // Uncheck the box.
+          disconCheckbox.checked = false;
+        }
+
+        // Set the default values of the dropdown boxes.
+        $('#typeSelect').val('<?php echo $type; ?>');
+        $('#currencySelect').val('<?php echo $currency; ?>');
+        $('#polarpatternSelect').val('<?php echo $polarpattern; ?>');
+      });
+    </script>
     <?php include 'partials/_footer.php'; ?>
