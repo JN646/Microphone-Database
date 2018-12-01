@@ -3,9 +3,10 @@
 
 <?php
 // initialise variables
-$make = $model = $type = $polarpattern = $price = $price_currency = $notes = $update_revisions = "";
+$make = $model = $imagePath = $type = $polarpattern = $price_currency = $notes = $update_revisions = "";
 $update = false;
 $discontinued = 0;
+$price = 0.00;
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
@@ -14,6 +15,7 @@ if (isset($_GET['edit'])) {
 
     if (count($record) == 1) {
         $n = mysqli_fetch_array($record);
+        $imagePath = $n['image_path'];
         $make = $n['make'];
         $model = $n['model'];
         $type = $n['type'];
@@ -55,25 +57,30 @@ if (isset($_GET['edit'])) {
           <form class='' method="post" action="server.php" >
           	<input type="hidden" name="id" value="<?php echo $id; ?>">
 
-          <fieldset>
-
-          </fieldset>
           <div class='form-row'>
-          <!-- Make -->
-          <div class='col'>
+            <!-- Image Path -->
+            <div class='col'>
               <div class="form-group">
-              		<label class="">Make</label><br>
-              		<input class='form-control' type="text" name="make" value="<?php echo $make; ?>">
-              	</div>
+                <label class="">Image</label><br>
+                <input class='form-control' type="text" name="image_path" placeholder="File Name" value="<?php echo $imagePath; ?>">
               </div>
+            </div>
 
-              <div class='col'>
-                <!-- Model -->
-              	<div class="form-group">
-              		<label class="">Model</label><br>
-              		<input class='form-control' type="text" name="model" value="<?php echo $model; ?>">
-              	</div>
+            <!-- Make -->
+            <div class='col'>
+              <div class="form-group">
+            		<label class="">Make</label><br>
+            		<input class='form-control' type="text" name="make" placeholder="Microphone Make" value="<?php echo $make; ?>">
               </div>
+            </div>
+
+            <!-- Model -->
+            <div class='col'>
+            	<div class="form-group">
+            		<label class="">Model</label><br>
+            		<input class='form-control' type="text" name="model" placeholder="Microphone Model" value="<?php echo $model; ?>">
+            	</div>
+            </div>
           </div>
 
         <div class='form-row'>
@@ -86,6 +93,7 @@ if (isset($_GET['edit'])) {
                   <option value="Omnidirectional">Omnidirectional</option>
                   <option value="Cardioid">Cardioid</option>
                   <option value="Super-Cardioid">Super-Cardioid</option>
+                  <option value="Multipattern">Multipattern</option>
                 </select>
               </div>
             </div>
@@ -97,6 +105,7 @@ if (isset($_GET['edit'])) {
                 <select id='typeSelect' class="form-control" name="type">
                   <option value="">Please Select</option>
                   <option value="Dynamic">Dynamic</option>
+                  <option value="Tube-Condenser">Tube-Condenser</option>
                   <option value="Condenser">Condenser</option>
                   <option value="Ribbon">Ribbon</option>
                 </select>
@@ -107,7 +116,7 @@ if (isset($_GET['edit'])) {
               <div class='col'>
                 <div class="form-group">
               		<label class="">Price</label><br>
-                  <input class='form-control' type="text" name="price" value="<?php echo $price; ?>">
+                  <input class='form-control' type="text" name="price" placeholder="0.00" value="<?php echo $price; ?>">
               	</div>
               </div>
 
@@ -124,8 +133,8 @@ if (isset($_GET['edit'])) {
                 </div>
               </div>
 
+              <!-- Discontinued -->
               <div class='col'>
-                <!-- Discontinued -->
                 <div class="form-group">
                   <label class="">Discontinued</label><br>
                   <input type="hidden" name="discontinued" value="0">

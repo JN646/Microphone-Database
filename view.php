@@ -10,6 +10,7 @@
     $microphone = mysqli_fetch_array($result);
 
     // Map fields
+    $imagePath = $microphone['image_path'];
     $make = $microphone['make'];
     $model = $microphone['model'];
     $type = $microphone['type'];
@@ -41,6 +42,12 @@
       <!-- Details -->
       <table class='table table-bordered'>
         <tbody>
+          <tr>
+            <td></td>
+            <td>
+              <img src="img/<?php echo $imagePath ?>" width=100px alt="<?php echo $make . " " . $model ?>">
+            </td>
+          </tr>
           <tr>
             <td><strong>Type:</strong></td>
             <td><?php echo $type ?></td>

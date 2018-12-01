@@ -13,6 +13,7 @@ $id = 0;
 // Add
 if (isset($_POST['save'])) {
   $id = $_POST['id'];
+  $imagePath = $_POST['image_path'];
   $make = $_POST['make'];
   $model = $_POST['model'];
   $type = $_POST['type'];
@@ -22,7 +23,7 @@ if (isset($_POST['save'])) {
   $polarpattern = $_POST['polarpattern'];
   $notes = $_POST['notes'];
 
-  if(mysqli_query($mysqli, "INSERT INTO crud (make, model, type, polarpattern, price, price_currency, discontinued, notes) VALUES ('$make', '$model', '$type', '$polarpattern', '$price', '$currency', '$discontinued', '$notes')")) {
+  if(mysqli_query($mysqli, "INSERT INTO crud (image_path, make, model, type, polarpattern, price, price_currency, discontinued, notes) VALUES ('$imagePath', '$make', '$model', '$type', '$polarpattern', '$price', '$currency', '$discontinued', '$notes')")) {
     $_SESSION['message'] = "Microphone Saved";
     header('location: index.php');
   } else {
@@ -34,6 +35,7 @@ if (isset($_POST['save'])) {
 // Edit
 if (isset($_POST['update'])) {
   $id = $_POST['id'];
+  $imagePath = $_POST['image_path'];
   $make = $_POST['make'];
   $model = $_POST['model'];
   $type = $_POST['type'];
@@ -43,7 +45,7 @@ if (isset($_POST['update'])) {
   $polarpattern = $_POST['polarpattern'];
   $notes = $_POST['notes'];
 
-  if(mysqli_query($mysqli, "UPDATE crud SET make='$make', model='$model', price='$price', price_currency='$currency', discontinued='$discontinued', type='$type', polarpattern='$polarpattern', notes='$notes' WHERE id=$id")) {
+  if(mysqli_query($mysqli, "UPDATE crud SET image_path='$imagePath', make='$make', model='$model', price='$price', price_currency='$currency', discontinued='$discontinued', type='$type', polarpattern='$polarpattern', notes='$notes' WHERE id=$id")) {
     $_SESSION['message'] = "Microphone Updated";
     header('location: index.php');
   } else {
